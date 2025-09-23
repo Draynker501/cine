@@ -15,7 +15,6 @@ return new class extends Migration {
             $table->string('name');
             $table->string('type');
             $table->decimal('price', 8, 2);
-            $table->integer('quantity');
             $table->integer('points_value')->default(0);
             $table->boolean('status')->default(true);
             $table->timestamps();

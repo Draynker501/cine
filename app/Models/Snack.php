@@ -13,7 +13,6 @@ class Snack extends Model
         'name',
         'type',
         'price',
-        'quantity',
         'points_value',
         'status',
     ];

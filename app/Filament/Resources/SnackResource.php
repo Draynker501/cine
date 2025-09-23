@@ -33,9 +33,6 @@ class SnackResource extends Resource
                     ->required()
                     ->numeric()
                     ->prefix('$'),
-                Forms\Components\TextInput::make('quantity')
-                    ->required()
-                    ->numeric(),
                 Forms\Components\TextInput::make('points_value')
                     ->required()
                     ->numeric()
@@ -55,9 +52,6 @@ class SnackResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('price')
                     ->money()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('quantity')
-                    ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('points_value')
                     ->numeric()
