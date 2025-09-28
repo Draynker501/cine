@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\CouponResource\Pages;
-use App\Filament\Resources\CouponResource\RelationManagers;
-use App\Models\Coupon;
+use App\Filament\Resources\SeatResource\Pages;
+use App\Filament\Resources\SeatResource\RelationManagers;
+use App\Models\Seat;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,29 +13,25 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class CouponResource extends Resource
+class SeatResource extends Resource
 {
-    protected static ?string $model = Coupon::class;
+    protected static ?string $model = Seat::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-percent-badge';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
+                Forms\Components\TextInput::make('hall_id')
+                    ->required()
+                    ->numeric(),
+                Forms\Components\TextInput::make('row')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('discount_percentage')
+                Forms\Components\TextInput::make('number')
                     ->required()
                     ->numeric(),
-                Forms\Components\DatePicker::make('expiration_date')
-                    ->required(),
-                Forms\Components\TextInput::make('points_cost')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\Toggle::make('status')
-                    ->required(),
             ]);
     }
 
@@ -43,19 +39,14 @@ class CouponResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
+                Tables\Columns\TextColumn::make('hall_id')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('row')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('discount_percentage')
+                Tables\Columns\TextColumn::make('number')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('expiration_date')
-                    ->date()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('points_cost')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\IconColumn::make('status')
-                    ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -88,9 +79,9 @@ class CouponResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCoupons::route('/'),
-            'create' => Pages\CreateCoupon::route('/create'),
-            'edit' => Pages\EditCoupon::route('/{record}/edit'),
+            'index' => Pages\ListSeats::route('/'),
+            'create' => Pages\CreateSeat::route('/create'),
+            'edit' => Pages\EditSeat::route('/{record}/edit'),
         ];
     }
 }

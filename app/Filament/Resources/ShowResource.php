@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\CouponResource\Pages;
-use App\Filament\Resources\CouponResource\RelationManagers;
-use App\Models\Coupon;
+use App\Filament\Resources\ShowResource\Pages;
+use App\Filament\Resources\ShowResource\RelationManagers;
+use App\Models\Show;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,29 +13,31 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class CouponResource extends Resource
+class ShowResource extends Resource
 {
-    protected static ?string $model = Coupon::class;
+    protected static ?string $model = Show::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-percent-badge';
+    protected static ?string $navigationIcon = 'heroicon-o-ticket';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('discount_percentage')
+                Forms\Components\TextInput::make('movie_id')
                     ->required()
                     ->numeric(),
-                Forms\Components\DatePicker::make('expiration_date')
-                    ->required(),
-                Forms\Components\TextInput::make('points_cost')
+                Forms\Components\TextInput::make('hall_id')
                     ->required()
                     ->numeric(),
-                Forms\Components\Toggle::make('status')
+                Forms\Components\DateTimePicker::make('start_time')
                     ->required(),
+                Forms\Components\TextInput::make('ticket_price')
+                    ->required()
+                    ->numeric(),
+                Forms\Components\TextInput::make('points_value')
+                    ->required()
+                    ->numeric()
+                    ->default(0),
             ]);
     }
 
@@ -43,19 +45,21 @@ class CouponResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('discount_percentage')
+                Tables\Columns\TextColumn::make('movie_id')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('expiration_date')
-                    ->date()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('points_cost')
+                Tables\Columns\TextColumn::make('hall_id')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\IconColumn::make('status')
-                    ->boolean(),
+                Tables\Columns\TextColumn::make('start_time')
+                    ->dateTime()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('ticket_price')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('points_value')
+                    ->numeric()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -88,9 +92,9 @@ class CouponResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCoupons::route('/'),
-            'create' => Pages\CreateCoupon::route('/create'),
-            'edit' => Pages\EditCoupon::route('/{record}/edit'),
+            'index' => Pages\ListShows::route('/'),
+            'create' => Pages\CreateShow::route('/create'),
+            'edit' => Pages\EditShow::route('/{record}/edit'),
         ];
     }
 }
