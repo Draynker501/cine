@@ -16,9 +16,10 @@ return new class extends Migration {
             $table->integer('duration');
             $table->string('classification');
             $table->string('genre');
-            $table->text('synopsis')->nullable();
-            $table->string('poster')->nullable();
-            $table->string('trailer')->nullable();
+            $table->text('synopsis');
+            $table->text('poster')->nullable();
+            $table->text('trailer')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

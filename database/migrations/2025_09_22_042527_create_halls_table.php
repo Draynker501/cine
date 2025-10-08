@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->string('name');
             $table->integer('capacity');
             $table->string('type');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->foreignId('hall_id')->constrained()->onDelete('cascade');
             $table->string('row');
             $table->integer('number');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

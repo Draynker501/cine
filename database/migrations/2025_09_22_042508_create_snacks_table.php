@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->decimal('price', 8, 2);
             $table->integer('points_value')->default(0);
             $table->boolean('status')->default(true);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

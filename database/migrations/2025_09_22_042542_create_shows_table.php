@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->dateTime('start_time');
             $table->decimal('ticket_price', 8, 2);
             $table->integer('points_value')->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

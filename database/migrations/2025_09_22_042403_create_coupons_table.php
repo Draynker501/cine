@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->date('expiration_date');
             $table->integer('points_cost');
             $table->boolean('status')->default(true);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
