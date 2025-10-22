@@ -17,7 +17,7 @@ class HallResource extends Resource
 {
     protected static ?string $model = Hall::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'gameicon-theater';
 
     public static function form(Form $form): Form
     {
