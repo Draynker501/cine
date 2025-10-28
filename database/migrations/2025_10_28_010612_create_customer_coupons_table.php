@@ -10,12 +10,15 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('user_coupons', function (Blueprint $table) {
+        Schema::create('customer_coupons', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('customer_id')->constrained()->onDelete('cascade');
             $table->foreignId('coupon_id')->constrained()->onDelete('cascade');
             $table->boolean('status')->default(true);
             $table->timestamps();
+
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
+            $table->foreign('coupon_id')->references('id')->on('coupons')->onDelete('cascade');
         });
     }
 
@@ -24,6 +27,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_coupons');
+        Schema::dropIfExists('customer_coupons');
     }
 };

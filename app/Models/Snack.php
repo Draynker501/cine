@@ -14,6 +14,7 @@ class Snack extends Model
         'name',
         'type',
         'price',
+        'image',
         'points_value',
         'status',
     ];

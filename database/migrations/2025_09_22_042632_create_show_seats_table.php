@@ -14,9 +14,11 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('hall_id')->constrained()->onDelete('cascade');
             $table->foreignId('seat_id')->constrained()->onDelete('cascade');
-            $table->string('item_type')->nullable();
             $table->string('status');
             $table->timestamps();
+
+            $table->foreign('hall_id')->references('id')->on('halls')->onDelete('cascade');
+            $table->foreign('seat_id')->references('id')->on('seats')->onDelete('cascade');
         });
     }
 

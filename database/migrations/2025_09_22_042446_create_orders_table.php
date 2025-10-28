@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('customer_id')->nullable()->constrained()->onDelete('cascade');
             $table->foreignId('coupon_id')->nullable()->constrained()->onDelete('set null');
             $table->dateTime('date');
             $table->string('status');
@@ -22,6 +22,9 @@ return new class extends Migration {
             $table->integer('gained_points')->default(0);
             $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
+            $table->foreign('coupon_id')->references('id')->on('coupons')->onDelete('set null');
         });
     }
 

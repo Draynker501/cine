@@ -9,4 +9,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Hall extends Model
 {
     use HasFactory, SoftDeletes;
+
+    protected $fillable = [
+        'name',
+        'capacity',
+        'type',
+    ];
 }
