@@ -17,8 +17,6 @@ return new class extends Migration {
             $table->integer('number');
             $table->softDeletes();
             $table->timestamps();
-
-            $table->foreign('hall_id')->references('id')->on('halls')->onDelete('cascade');
         });
     }
 

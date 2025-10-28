@@ -18,10 +18,6 @@ return new class extends Migration {
             $table->integer('quantity');
             $table->decimal('price', 8, 2);
             $table->timestamps();
-
-            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
-            $table->foreign('item_id')->references('id')->on('snacks')->onDelete('cascade');
-            $table->foreign('item_id')->references('id')->on('show_seats')->onDelete('cascade');
         });
     }
 

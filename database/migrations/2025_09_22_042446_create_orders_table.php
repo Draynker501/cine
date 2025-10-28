@@ -22,9 +22,6 @@ return new class extends Migration {
             $table->integer('gained_points')->default(0);
             $table->softDeletes();
             $table->timestamps();
-
-            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
-            $table->foreign('coupon_id')->references('id')->on('coupons')->onDelete('set null');
         });
     }
 

@@ -18,8 +18,6 @@ return new class extends Migration {
             $table->string('payment_status');
             $table->softDeletes();
             $table->timestamps();
-
-            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
         });
     }
 

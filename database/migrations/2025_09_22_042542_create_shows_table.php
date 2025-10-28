@@ -19,9 +19,6 @@ return new class extends Migration {
             $table->integer('points_value')->default(0);
             $table->softDeletes();
             $table->timestamps();
-
-            $table->foreign('movie_id')->references('id')->on('movies')->onDelete('cascade');
-            $table->foreign('hall_id')->references('id')->on('halls')->onDelete('cascade');
         });
     }
 

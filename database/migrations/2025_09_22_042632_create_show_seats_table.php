@@ -16,9 +16,6 @@ return new class extends Migration {
             $table->foreignId('seat_id')->constrained()->onDelete('cascade');
             $table->string('status');
             $table->timestamps();
-
-            $table->foreign('hall_id')->references('id')->on('halls')->onDelete('cascade');
-            $table->foreign('seat_id')->references('id')->on('seats')->onDelete('cascade');
         });
     }
 
