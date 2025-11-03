@@ -40,6 +40,12 @@ class SnackResource extends Resource
                     ->required()
                     ->numeric()
                     ->default(0),
+                Forms\Components\FileUpload::make('image')
+                    ->image() // asegura que sea imagen
+                    ->directory('snacks-images') // carpeta dentro de storage/app/public/snacks/snacks-images
+                    ->imagePreviewHeight('250') // preview
+                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                    ->maxSize(2048), // 2MB,
                 Forms\Components\Toggle::make('status')
                     ->required(),
             ]);
@@ -59,6 +65,11 @@ class SnackResource extends Resource
                 Tables\Columns\TextColumn::make('points_value')
                     ->numeric()
                     ->sortable(),
+                Tables\Columns\ImageColumn::make('image')
+                    ->label('Image')
+                    ->square()
+                    ->height(60)
+                    ->width(40),
                 Tables\Columns\IconColumn::make('status')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
